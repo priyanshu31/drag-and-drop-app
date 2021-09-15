@@ -1,0 +1,16 @@
+#drop-panel {
+    min-height: 200px;
+    background: white;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+  
+    header {
+      padding-left: 10px;
+      font-size: 12px;
+    }
+}
+
+.content {
+    flex: 1;
+}
