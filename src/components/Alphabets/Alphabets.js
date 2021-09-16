@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Alphabets.scss'
+import crossIcon from '../../icons/close-icon.svg'
 
 const Alphabets = () => {
 
@@ -26,7 +27,10 @@ const Alphabets = () => {
                 {
                   alphabets.map((e, i) => (
                     <div className="tile-wrapper">
-                      <div key={i} id={e} className="tile" draggable="true" onDragStart={dragStart}>{e}</div>
+                      <div key={i} id={e} className="tile" draggable="true" onDragStart={dragStart}>
+                        {e}
+                        <img src={crossIcon} className="cross-icon" style={{display: 'none'}} />
+                      </div>
                     </div>
                   ))   
                 }

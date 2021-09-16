@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './DropPanel.scss'
 
 const DropPanel = () => {
@@ -6,13 +6,32 @@ const DropPanel = () => {
     const dropElement = e => {
 
         const id = e.dataTransfer.getData('text');
-        const draggableElement = document.getElementById(id);
+        let draggableElement = document.getElementById(id);
         const dropzone = e.target;
-        console.log(dropzone)
-        if(draggableElement)
+      
+        if(draggableElement) {
+            draggableElement = draggableElement.cloneNode(true);
             dropzone.appendChild(draggableElement);
+            draggableElement.childNodes[1].style.display = 'flex';
+        }
+
         e.dataTransfer.clearData();
     }
+
+    useEffect(() => {
+
+        const script = document.createElement("script");
+        script.type = 'text/javascript';
+        script.async = true;
+
+        script.innerHTML = `
+            console.log('Hello')
+
+        `;
+
+        document.body.appendChild(script);
+
+    }, [])
 
     return (
         <>
