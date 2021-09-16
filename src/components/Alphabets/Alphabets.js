@@ -5,6 +5,8 @@ const Alphabets = () => {
 
   const [alphabets, setAlphabets] = useState([]);
 
+  const dragStart = e => e.dataTransfer.setData('text/plain', e.target.id);
+    
   useEffect(() => {
 
     let alphaArray = [];
@@ -22,9 +24,9 @@ const Alphabets = () => {
               <div id="tile-container">
 
                 {
-                  alphabets.map((e) => (
+                  alphabets.map((e, i) => (
                     <div className="tile-wrapper">
-                      <div className="tile">{e}</div>
+                      <div key={i} id={e} className="tile" draggable="true" onDragStart={dragStart}>{e}</div>
                     </div>
                   ))   
                 }
