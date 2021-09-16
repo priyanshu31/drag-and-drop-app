@@ -13,25 +13,11 @@ const DropPanel = () => {
             draggableElement = draggableElement.cloneNode(true);
             dropzone.appendChild(draggableElement);
             draggableElement.childNodes[1].style.display = 'flex';
+            draggableElement.childNodes[1].setAttribute('onclick', `this.parentNode.remove();`);
         }
 
         e.dataTransfer.clearData();
     }
-
-    useEffect(() => {
-
-        const script = document.createElement("script");
-        script.type = 'text/javascript';
-        script.async = true;
-
-        script.innerHTML = `
-            console.log('Hello')
-
-        `;
-
-        document.body.appendChild(script);
-
-    }, [])
 
     return (
         <>
