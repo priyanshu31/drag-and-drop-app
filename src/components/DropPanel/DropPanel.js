@@ -23,7 +23,12 @@ const DropPanel = () => {
         <>
             {/* <section class="content"></section> */}
             
-            <p className="drag-heading">DRAG ITEMS HERE</p>
+            <p className="drag-heading">
+                DOUBLE CLICK THE INTEGER BOX TO CHANGE THE VALUE
+                <br />
+                <hr />
+                DRAG ITEMS HERE
+            </p>
             <section id="drop-panel" className="drop-panel" onDragOver={e => e.preventDefault()} onDrop={dropElement}>
             
             </section>
