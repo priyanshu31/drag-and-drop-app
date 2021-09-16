@@ -88,15 +88,15 @@ const Submit = ({ result }) => {
 
                 <div className="tile-wrapper">
                     <div id="left" className="tile icons" draggable="true" onDragStart={dragStart}>
-                        <img src={leftIcon} />
-                        <img src={crossIcon} className="cross-icon" style={{display: 'none'}} />
+                        <img src={leftIcon} draggable="false" />
+                        <img src={crossIcon} className="cross-icon" style={{display: 'none'}} draggable="false" />
                     </div>
                 </div>
 
                 <div className="tile-wrapper">
                     <div id="right" className="tile icons" draggable="true" onDragStart={dragStart}>
-                        <img src={rightIcon} />
-                        <img src={crossIcon} className="cross-icon" style={{display: 'none'}} />
+                        <img src={rightIcon} draggable="false" />
+                        <img src={crossIcon} className="cross-icon" style={{display: 'none'}} draggable="false" />
                     </div>
                 </div>
 
