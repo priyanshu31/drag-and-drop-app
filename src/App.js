@@ -18,7 +18,7 @@ function App() {
 
         <Alphabets />
         <Submit result={result} />  
-        <Results results={apiResponse}/>
+        <Results results={apiResponse} result={result}/>
         <DropPanel />
 
       </main>

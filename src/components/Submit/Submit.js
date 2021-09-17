@@ -10,6 +10,7 @@ const Submit = ({ result }) => {
     const [integer, setInteger] = useState(50);
     const [integerActive, setIntegerActive] = useState(false);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const dragStart = e => e.dataTransfer.setData('text/plain', e.target.id);
     
@@ -22,39 +23,36 @@ const Submit = ({ result }) => {
     }
 
     const submit = async (e) => {
-
+        
         let dropPanel = document.getElementById('drop-panel').childNodes;
+        result(null);
         
         if(dropPanel.length !== 3)
         {
-            result(null);
             setError('Drop Panel should have only 3 expression to submit');
             return;
         }
-
+        
         if(dropPanel[0].id === "left" || dropPanel[0].id === "right" || dropPanel[0].id === "integer")
         {
-            result(null);
             setError('First Expression should be an Alphabet only');
             return;
         }
         
         if(dropPanel[1].id !== "left" && dropPanel[1].id !== "right")
         {
-            result(null);
             setError('Second Expression should be a Logical operator only');
             return;
         }
         
         if(dropPanel[2].id !== "integer")
         {
-            result(null);
             setError('Third Expression should be a Number only');
             return;
         }
-
-        console.log(dropPanel);
-
+        
+        setLoading(true);
+        
         try {
             let api_res = await axios
                             .get(`https://draganddrop-backend.herokuapp.com/data?alphabet=${dropPanel[0].innerText}&operator=${dropPanel[1].id === "left" ? '<' : '>'}&value=${dropPanel[2].innerText}`)
@@ -66,10 +64,11 @@ const Submit = ({ result }) => {
             result(api_res);
         } catch(err) {
 
-            result(null);
             setError('Server Error');
             console.log(err)
         }
+
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -78,9 +77,7 @@ const Submit = ({ result }) => {
             setError(null);
         }, 5000);
 
-    }, [error])
-
-    useEffect(() => console.log(error), [error])
+    }, [error]);
 
     return (
         <>
@@ -130,8 +127,14 @@ const Submit = ({ result }) => {
                     Submit
                 </button>
 
+
                 
             </div>
+            
+            {loading &&(
+                <img className="loading-gif" src='/loading.gif' />
+            )}
+
             {error && (
                 <div className="alert alert-danger fade show">
                     {error}

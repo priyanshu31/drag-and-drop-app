@@ -1,3 +1,11 @@
 .container {
     margin-bottom: 2rem !important;
 }
+
+.close-icon {
+    display: inline !important;
+    position: absolute;
+    top: 19.5rem;
+    right: 7rem;
+    cursor: pointer;
+}
